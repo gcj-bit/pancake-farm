@@ -1,17 +1,25 @@
-# PanCake Farming 🥞
+# Farm Deploy 
 
-[![Actions Status](https://github.com/pancakeswap/pancake-farm/workflows/CI/badge.svg)](https://github.com/pancakeswap/pancake-farm/actions)
-[![codecov](https://codecov.io/gh/pancakeswap/pancake-farm/branch/master/graph/badge.svg?token=5XMLP74IR0)](https://codecov.io/gh/pancakeswap/pancake-farm)
+# Local Development
 
-https://pancakeswap.finance. Feel free to read the code. More details coming soon.
+The following assumes the use of `node@>=10`.
+## 初始化配置
 
-## Deployed Contracts / Hash
+`mv hardhat.config.example hardhat.config.js`
+>部署前请注意更新`ALCHEMY_API_KEY`及`ROPSTEN_PRIVATE_KEY`
 
-### BSCMAINNET
+## 安装依赖
 
-- CakeToken - https://bscscan.com/token/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82
-- MasterChef - https://bscscan.com/address/0x73feaa1eE314F8c655E354234017bE2193C9E24E
-- (Uni|Cake)swapV2Factory - https://bscscan.com/address/0xBCfCcbde45cE874adCB698cC183deBcF17952812
-- (Uni|Cake)swapV2Router02 - https://bscscan.com/address/0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F
-- (Uni|Cake)swapV2Pair init code hash - `0xd0d4c4cd0848c93cb4fd1f498d7013ee6bfb25783ea21593d5834f5d250ece66`
-- MultiCall - 0xE1dDc30f691CA671518090931e3bFC1184BFa4Aa
+`yarn install`
+
+## 编译合约
+
+`npx hardhat compile`
+
+## Run Tests
+
+`npx builder test`
+
+## 部署到heco
+
+`npx hardhat run --network heco scripts/deploy-masterchef.js`

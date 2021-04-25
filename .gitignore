@@ -9,4 +9,5 @@ artifacts
 coverage
 coverage.json
 package-lock.json
+hardhat.config.js
 yarn-error.log

@@ -10,7 +10,7 @@ task("accounts", "Prints the list of accounts", async () => {
   }
 });
 
-const ALCHEMY_API_KEY = 'SJiPzXRnnH9R1t0wBH1laDVHviNxLmfG';
+const ALCHEMY_API_KEY = '';
 // Replace this private key with your Ropsten account private key
 // To export your private key from Metamask, open Metamask and
 // go to Account Details > Export Private Key

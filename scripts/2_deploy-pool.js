@@ -21,7 +21,6 @@ async function main() {
         "Deploying the contracts with the account:",
         await deployer.getAddress()
     );
-
     console.log("Account balance:", (await deployer.getBalance()).toString());
 
     const SousChefToken = await ethers.getContractFactory("SousChef");

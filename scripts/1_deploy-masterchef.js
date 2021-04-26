@@ -24,21 +24,22 @@ async function main() {
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
   const CakeToken = await ethers.getContractFactory("CakeToken");
-  const cakeToken = await CakeToken.deploy();
-  await cakeToken.deployed();
-  LOGS.cacheToken = cakeToken.address;
-  console.log("Cake Token address:", cakeToken.address);
+  const cake = await CakeToken.deploy();
+  await cake.deployed();
+  LOGS.cakeToken = cake.address;
+  console.log("Cake Token address:", cake.address);
 
   const SyrupBarToken = await ethers.getContractFactory("SyrupBar");
-  const syrupBarToken = await SyrupBarToken.deploy(cakeToken.address);
-  await syrupBarToken.deployed();
-  LOGS.syrupBarToken = syrupBarToken.address;
-  console.log("SyrupBar Token address:", syrupBarToken.address);
+  const syrupBar = await SyrupBarToken.deploy(cake.address);
+  await syrupBar.deployed();
+  LOGS.syrupBarToken = syrupBar.address;
+  console.log("SyrupBar Token address:", syrupBar.address);
+
 
   const MasterChefToken = await ethers.getContractFactory("MasterChef");
   const masterChef = await MasterChefToken.deploy(
-      cakeToken.address,
-      syrupBarToken.address,
+      cake.address,
+      syrupBar.address,
       deployer.getAddress(), //开发者地址
       CAKE_PER_BLOCK,  //每个区块产生的cake token数量
       START_BLOCK, //heco 区块起始地址，部署的时候根据实际情况进行调整
@@ -48,10 +49,13 @@ async function main() {
   LOGS.masterChef = masterChef.address;
   console.log("MasterChef Token address:", masterChef.address);
 
-  await cakeToken.transferOwnership(masterChef.address); //将CakeToken的Owner权限交给MasterChef
-  console.log("CakeToken owner:", await cakeToken.owner());
+  // await cakeToken.transferOwnership(masterChef.address); //将CakeToken的Owner权限交给MasterChef
+  // console.log("CakeToken owner:", await cakeToken.owner());
+  //
+  // await syrupBarToken.transferOwnership(masterChef.address); //将SyrupBarToken的Owner权限交给MasterChef
+  // console.log("SyrupBar owner:", await syrupBarToken.owner());
 
-  // We also save the contract's artifacts and address in the frontend directory
+  //保存地址信息部署记录
   saveDeployCacheFiles(LOGS);
 }
 

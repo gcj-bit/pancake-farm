@@ -29,6 +29,7 @@
     "ethers": "^5.1.3",
     "hardhat": "^2.2.1",
     "inquirer": "^8.0.0",
+    "jsome": "^2.5.0",
     "prompt": "^1.1.0",
     "solidity-coverage": "^0.7.13",
     "truffle-hdwallet-provider": "^1.0.17",

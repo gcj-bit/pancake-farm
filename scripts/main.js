@@ -4,10 +4,7 @@ const farm = require('./include/farm');
 const pool = require('./include/pool');
 
 
-
-
 async function main() {
-
     // ethers is avaialble in the global scope
     const [deployer] = await ethers.getSigners();
     command.warn(
@@ -15,6 +12,7 @@ async function main() {
         await deployer.getAddress()
     );
     command.warn("Account balance:" + (await deployer.getBalance()).toString());
+
 
     if(!await command.confirm("是否使用此账户继续操作？")) {
         return;

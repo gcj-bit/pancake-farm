@@ -1,5 +1,7 @@
 const inquirer = require('inquirer');
 const $console = require('Console');
+const jsome = require('jsome');
+
 
 module.exports = {
     async choices(title, options) {
@@ -63,6 +65,6 @@ module.exports = {
         exist && process.exit(1);
     },
     print(obj) {
-        $console.debug(JSON.stringify(obj));
+        jsome(obj);
     }
 }

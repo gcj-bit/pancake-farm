@@ -4,10 +4,11 @@ pragma solidity 0.6.12;
 import '@pancakeswap/pancake-swap-lib/contracts/math/SafeMath.sol';
 import '@pancakeswap/pancake-swap-lib/contracts/token/BEP20/IBEP20.sol';
 import '@pancakeswap/pancake-swap-lib/contracts/token/BEP20/SafeBEP20.sol';
-
+import '@pancakeswap/pancake-swap-lib/contracts/access/Ownable.sol';
 // import "@nomiclabs/buidler/console.sol";
 
 // SousChef is the chef of new tokens. He can make yummy food and he is a fair guy as well as MasterChef.
+// @deprecated 此合约暂未发现用处
 contract SousChef {
     using SafeMath for uint256;
     using SafeBEP20 for IBEP20;

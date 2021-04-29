@@ -4,7 +4,7 @@ pragma solidity 0.6.12;
 import "@pancakeswap/pancake-swap-lib/contracts/token/BEP20/BEP20.sol";
 
 // CakeToken with Governance.
-contract CakeToken is BEP20('Bk Cake Token', 'Bk Cake') {
+contract CakeToken is BEP20 {
     /// @notice Creates `_amount` token to `_to`. Must only be called by the owner (MasterChef).
     function mint(address _to, uint256 _amount) public onlyOwner {
         _mint(_to, _amount);
@@ -46,6 +46,17 @@ contract CakeToken is BEP20('Bk Cake Token', 'Bk Cake') {
 
     /// @notice An event thats emitted when a delegate account's vote balance changes
     event DelegateVotesChanged(address indexed delegate, uint previousBalance, uint newBalance);
+
+    ///add custom constructor
+    constructor(
+        string memory name,
+        string memory symbol,
+        uint256 amountToMint
+    ) public BEP20(name, symbol) {
+        if(amountToMint > 0) {
+            _mint(msg.sender, amountToMint);
+        }
+    }
 
     /**
      * @notice Delegate votes from `msg.sender` to `delegatee`

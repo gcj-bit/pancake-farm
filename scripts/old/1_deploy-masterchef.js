@@ -24,7 +24,11 @@ async function main() {
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
   const CakeToken = await ethers.getContractFactory("CakeToken");
-  const cake = await CakeToken.deploy();
+  const cake = await CakeToken.deploy(
+      'Cake Token',
+      'CakeToken',
+      '5000000000000000000000'
+  );
   await cake.deployed();
   LOGS.cakeToken = cake.address;
   console.log("Cake Token address:", cake.address);
@@ -49,11 +53,11 @@ async function main() {
   LOGS.masterChef = masterChef.address;
   console.log("MasterChef Token address:", masterChef.address);
 
-  // await cakeToken.transferOwnership(masterChef.address); //将CakeToken的Owner权限交给MasterChef
-  // console.log("CakeToken owner:", await cakeToken.owner());
-  //
-  // await syrupBarToken.transferOwnership(masterChef.address); //将SyrupBarToken的Owner权限交给MasterChef
-  // console.log("SyrupBar owner:", await syrupBarToken.owner());
+  await cake.transferOwnership(masterChef.address); //将CakeToken的Owner权限交给MasterChef
+  console.log("CakeToken owner:", await cake.owner());
+
+  await syrupBar.transferOwnership(masterChef.address); //将SyrupBarToken的Owner权限交给MasterChef
+  console.log("SyrupBar owner:", await syrupBar.owner());
 
   //保存地址信息部署记录
   saveDeployCacheFiles(LOGS);

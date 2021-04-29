@@ -31,13 +31,13 @@ module.exports = {
     buidlerevm: {
     },
     development: {
-      url: "http://127.0.0.1:7545",
-      port: 7545,
-      network_id: "101"
+      url: "http://127.0.0.1:8545",
+      port: 8545,
+      network_id: "1337"
     },
     test: {
-      url: "http://127.0.0.1:7545",
-      port: 7545,
+      url: "http://127.0.0.1:8545",
+      port: 8545,
       network_id: "*"
     },
   },

@@ -1,8 +1,7 @@
 // This is a script for deploying your contracts. You can adapt it to deploy
 // yours, or create new ones.
-
-let LOGS = {};
-
+let LOGS = [];
+let tokens = ['PIGUSDT', 'PIGDAI', 'PIGCAKE', 'PIGTEST'];
 async function main() {
 // ethers is avaialble in the global scope
     const [deployer] = await ethers.getSigners();
@@ -11,16 +10,15 @@ async function main() {
         await deployer.getAddress()
     );
 
-    for(let i = 1; i<= 10; i++) {
-        let TestToken = await ethers.getContractFactory(`LpTestToken`);
-        let testToken = await TestToken.deploy(`My Test Lp Token ${i}`, `LPT${i}`);
-        await testToken.deployed();
-        await testToken.mint(10000)
-        LOGS[`LPT${i}`] = testToken.address;
-        console.log(`Lp Token address ${i}:`, testToken.address);
+    for(let i in tokens) {
+        let PoolToken = await ethers.getContractFactory(`PoolToken`);
+        let earningToken = await PoolToken.deploy(tokens[i], tokens[i], '1000000000000000000000000000');
+        await earningToken.deployed();
+        LOGS.push(earningToken.address);
+        console.log(`Dai Token address ${i}:`, earningToken.address);
     }
     // 保存地址信息部署记录
-    saveDeployCacheFiles(LOGS);
+    // saveDeployCacheFiles(LOGS);
 }
 function saveDeployCacheFiles(logs) {
     const fs = require("fs");
@@ -30,7 +28,7 @@ function saveDeployCacheFiles(logs) {
         fs.mkdirSync(cacheDir);
     }
     fs.writeFileSync(
-        cacheDir + "/deploy-cache-lptokens.json",
+        cacheDir + "/deploy-cache-daitokens.json",
         JSON.stringify(logs, undefined, 2)
     );
 }

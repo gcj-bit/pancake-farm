@@ -5,6 +5,7 @@ node_modules
 
 #Buidler files
 cache
+cache-bak
 artifacts
 coverage
 coverage.json

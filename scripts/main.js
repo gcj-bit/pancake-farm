@@ -18,6 +18,7 @@ async function main() {
     );
     command.warn("Account balance:" + (await deployer.getBalance()).toString()); //账户确认，并且必须配置
 
+
     if(!await command.confirm("是否使用此账户继续操作？")) {
         return;
     }

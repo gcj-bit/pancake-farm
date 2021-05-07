@@ -5,7 +5,7 @@ const hardhatConfig = require('../hardhat.config');
 
 async function main() {
     //检查hardhat的配置
-    if(hardhatConfig.networks.heco || !hardhatConfig.networks.heco.accounts || !hardhatConfig.networks.heco.accounts[0]) {
+    if(!hardhatConfig.networks.heco || !hardhatConfig.networks.heco.accounts || !hardhatConfig.networks.heco.accounts[0]) {
         command.print(hardhatConfig);
         command.warn("未配置hardhat连接钱包应用于操作的地址账户，无法继续操作！", true); //配置不完整
     }

@@ -1,4 +1,5 @@
 module.exports = {
+    "mode": "dev", //dev、prod
     "cakeToken": {
         "name": "Pig Cake Token",
         "symbol": "CakeToken",

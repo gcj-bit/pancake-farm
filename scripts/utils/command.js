@@ -10,6 +10,7 @@ module.exports = {
                 type: 'rawlist',
                 name: 'choice',
                 message: title,
+                prefix: '>',
                 choices: options,
             }
         ]).then((answer) => {
@@ -29,6 +30,7 @@ module.exports = {
         this.info(title);
         for (let i in inputList) {
             inputList[i].type = 'input';
+            inputList[i].prefix = '>';
         }
         return await inquirer.prompt(inputList).then((answer) => {
             return answer;
@@ -41,6 +43,7 @@ module.exports = {
             message:title,
             name:'confirm',
             type:'confirm',
+            prefix: 'Q:',
             default:false
         }]).then((answer) => {
             return answer.confirm;
